@@ -39,7 +39,7 @@ const app = new Vue({
               return placeClone;
             });
 
-            Array.from(placeIdList).forEach((placeId) => {
+            [...placeIdList].forEach((placeId) => {
               ipcRenderer.send('get-rating', placeId);
             });
 
