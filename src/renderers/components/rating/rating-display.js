@@ -24,7 +24,7 @@ Vue.component('rating-display', {
 
   methods: {
     placeSelected() {
-      this.$root.$emit('placeSelected', this.placeId);
+      this.$root.$emit('place-selected', this.placeId);
     },
   },
 });

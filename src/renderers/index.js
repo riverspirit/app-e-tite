@@ -5,7 +5,9 @@ const {search} = require('./search');
 require('./components/restaurant/');
 require('./components/rating');
 
+/* eslint-disable no-unused-vars */
 const app = new Vue({
+/* eslint-enable no-unused-vars */
   el: document.querySelector('#app'),
   data: {
     message: 'Hello',
@@ -27,22 +29,22 @@ const app = new Vue({
           this.coordinates.lng = location.longitude;
           this.locationName = getLocality(results);
           search(location.latitude, location.longitude).then((placesList) => {
-            placesList.forEach((place) => {
-              if (place.appetiteRating === undefined) {
-                place.appetiteRating = 0;
-              }
+            const placeIdList = new Set();
 
-              if (place.ratingCount === undefined) {
-                place.ratingCount = 0;
-              }
-
-              ipcRenderer.send('get-rating', place.place_id);
+            const formattedPlaceList = placesList.map((place) => {
+              const placeClone = Object.assign({}, place);
+              placeIdList.add(placeClone.place_id);
+              placeClone.appetiteRating = placeClone.appetiteRating || 0;
+              placeClone.ratingCount = placeClone.ratingCount || 0;
+              return placeClone;
             });
 
-            this.restaurants.push(...placesList);
-          }).catch(() => {
-            // Handle the error
-          });
+            Array.from(placeIdList).forEach((placeId) => {
+              ipcRenderer.send('get-rating', placeId);
+            });
+
+            this.restaurants.push(...formattedPlaceList);
+          }).catch(_ => _);
         }).catch(_ => _);
       }).catch(_ => _);
     },
@@ -58,12 +60,12 @@ const app = new Vue({
   },
 
   created() {
-    this.$on('placeSelected', (placeId) => {
+    this.$on('place-selected', (placeId) => {
       const index = findIndex(this.restaurants, {place_id: placeId});
       this.selectedPlace = this.restaurants[index];
     });
 
-    this.$on('gaveRating', (value) => {
+    this.$on('rating-added', (value) => {
       this.ratingValue = value;
     });
 

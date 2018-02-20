@@ -13,7 +13,7 @@ Vue.component('rating-input', {
   methods: {
     rate(value) {
       this.rating = value;
-      this.$root.$emit('gaveRating', value);
+      this.$root.$emit('rating-added', value);
     },
     getClasses(value) {
       const ratingClassName = `rating-${value}`;

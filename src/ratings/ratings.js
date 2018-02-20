@@ -5,13 +5,10 @@ function getRating(placeId) {
     setImmediate(() => {
       const collection = db.getCollection(collections.RATINGS);
       const allRatings = collection.find({placeId});
-      // console.log(allRatings)
-      const sumOfRatings = allRatings.reduce((sum, currentItem) => sum + currentItem.ratingValue, 0);
-      // console.log(sumOfRatings)
+      const sumOfRatings = allRatings.reduce((sum, thisItem) => sum + thisItem.ratingValue, 0);
       const ratingCount = allRatings.length;
       const average = sumOfRatings / ratingCount;
-      const newRating = Math.round(average);
-      // console.log({newRating, ratingCount})
+      const newRating = Number.isNaN(average) ? 0 : Math.round(average);
       resolve({newRating, ratingCount});
     });
   });
