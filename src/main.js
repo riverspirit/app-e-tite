@@ -1,3 +1,5 @@
+const path = require('path');
+const url = require('url');
 const electron = require('electron');
 const {machineId} = require('node-machine-id');
 require('./config').init(electron.app.getPath('appData'));
@@ -9,8 +11,6 @@ machineId().then((id) => {
 });
 
 const {app, BrowserWindow, ipcMain} = electron;
-const path = require('path');
-const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

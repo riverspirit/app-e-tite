@@ -11,14 +11,16 @@
     "name": "jsx"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "yarn sass && electron .",
     "lint": "./node_modules/.bin/eslint src/**/\\*.js",
     "lint-fix": "./node_modules/.bin/eslint src/**/\\*.js --fix",
-    "dist": "electron-builder"
+    "dist": "yarn sass && electron-builder",
+    "sass": "node-sass src/public/css/ -o src/public/css/compiled"
   },
   "devDependencies": {
     "electron": "~1.8.2",
-    "electron-builder": "^20.0.7"
+    "electron-builder": "^20.0.7",
+    "node-sass": "^4.7.2"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.3",
