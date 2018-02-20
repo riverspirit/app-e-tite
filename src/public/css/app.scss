@@ -1,223 +1,263 @@
-$black: #000000;
+$black: #000;
 $white: #fff;
-$rating_0_text_color: #eeeeee;
-$rating_1_text_color: #fd8f8f;
-$rating_2_text_color: #fd967d;
-$rating_3_text_color: #ffb077;
-$rating_4_text_color: #ffd38a;
-$rating_5_text_color: #ffe1af;
-$rating_6_text_color: #fcff7f;
-$rating_7_text_color: #fcff69;
-$rating_8_text_color: #deff3e;
-$rating_9_text_color: #c3f35a;
-$rating_10_text_color: #a3f531;
-$rating_unrated_text_color: #7d7d7d;
-$font_family_1: Arial, sans-serif;
-$body_bg_color: #f8f9fa;
-$nav_bg_color: #292b2c;
-$app_title_bg_color: rgba(128, 202, 90, 0.83);
-$rating_0_bg_color: #dadada;
-$rating_1_bg_color: #cd374e;
-$rating_2_bg_color: #f04646;
-$rating_3_bg_color: #ff6a45;
-$raging_4_bg_color: #ff964b;
-$rating_5_bg_color: #ffb12e;
-$rating_6_bg_color: #dee221;
-$rating_7_bg_color: #c2e229;
-$rating_8_bg_color: #a4d92f;
-$rating_9_bg_color: #7cd500;
-$rating_10_bg_color: #4eb50b;
-$rating_unrated_bg_color: #e8e8e8;
-$rating_btn_text_color: rgba(27, 30, 41, 0.81);
-$rating_btn_bg_color: rgba(241, 241, 241, 0.78);
-$rating_btn_bg_hover: #e1eaf3;
-$rating_btn_border: #7b7b7b;
-$location_input_underline: #464343;
-$rating_count_underline: #2c2cb5;
+$rating-0-text-color: #eee;
+$rating-1-text-color: #fd8f8f;
+$rating-2-text-color: #fd967d;
+$rating-3-text-color: #ffb077;
+$rating-4-text-color: #ffd38a;
+$rating-5-text-color: #ffe1af;
+$rating-6-text-color: #fcff7f;
+$rating-7-text-color: #fcff69;
+$rating-8-text-color: #deff3e;
+$rating-9-text-color: #c3f35a;
+$rating-10-text-color: #a3f531;
+$rating-unrated-text-color: #7d7d7d;
+$font-family-1: Arial, sans-serif;
+$body-bg-color: #f8f9fa;
+$nav-bg-color: #292b2c;
+$app-title-bg-color: rgba(128, 202, 90, .83);
+$rating-0-bg-color: #dadada;
+$rating-1-bg-color: #cd374e;
+$rating-2-bg-color: #f04646;
+$rating-3-bg-color: #ff6a45;
+$raging-4-bg-color: #ff964b;
+$rating-5-bg-color: #ffb12e;
+$rating-6-bg-color: #dee221;
+$rating-7-bg-color: #c2e229;
+$rating-8-bg-color: #a4d92f;
+$rating-9-bg-color: #7cd500;
+$rating-10-bg-color: #4eb50b;
+$rating-unrated-bg-color: #e8e8e8;
+$rating-btn-text-color: rgba(27, 30, 41, .81);
+$rating-btn-bg-color: rgba(241, 241, 241, .78);
+$rating-btn-bg-hover: #e1eaf3;
+$rating-btn-border: #7b7b7b;
+$location-input-underline: #464343;
+$rating-count-underline: #2c2cb5;
 
 body {
-	min-height: 75rem;
-	padding-top: 4.5rem;
-	background-color: $body_bg_color;
-}
-.top-nav {
-	background-color: $nav_bg_color;
-}
-.app-title {
-	background-color: $app_title_bg_color;
-	padding: 0px 4px;
-	border-radius: 4px;
-	color: $black;
-	cursor: default;
-	transition: 0.50s;
-	&:hover {
-		transition: 0.50s;
-		transform: rotate(3deg);
-	}
-}
-.location-search {
-	background-color: $nav_bg_color;
-	border: 1px solid transparent;
-	border-bottom: 1px dotted $location_input_underline;
-	color: $white;
-}
-.restaurant {
-	position: relative;
-	.image {
-		width: 120px;
-		height: 100px;
-		background: transparent no-repeat center;
-		background-size: cover;
-	}
-	.media-body {
-		height: 110px;
-	}
-	.rate-link {
-		position: absolute;
-		right: 2px;
-		top: 55px;
-	}
-}
-.address-block {
-	padding: 0;
-}
-.review-text {
-	padding: 0;
-}
-.rating-0 {
-	background-color: $rating_0_bg_color;
-	color: $rating_0_text_color;
-}
-.rating-1 {
-	background-color: $rating_1_bg_color;
-	color: $rating_1_text_color;
-}
-.rating-2 {
-	background-color: $rating_2_bg_color;
-	color: $rating_2_text_color;
-}
-.rating-3 {
-	background-color: $rating_3_bg_color;
-	color: $rating_3_text_color;
-}
-.rating-4 {
-	background-color: $raging_4_bg_color;
-	color: $rating_4_text_color;
-}
-.rating-5 {
-	background-color: $rating_5_bg_color;
-	color: $rating_5_text_color;
-}
-.rating-6 {
-	background-color: $rating_6_bg_color;
-	color: $rating_6_text_color;
-}
-.rating-7 {
-	background-color: $rating_7_bg_color;
-	color: $rating_7_text_color;
-}
-.rating-8 {
-	background-color: $rating_8_bg_color;
-	color: $rating_8_text_color;
-}
-.rating-9 {
-	background-color: $rating_9_bg_color;
-	color: $rating_9_text_color;
-}
-.rating-10 {
-	background-color: $rating_10_bg_color;
-	color: $rating_10_text_color;
-}
-.rating-unrated {
-	background-color: $rating_unrated_bg_color;
-	color: $rating_unrated_text_color;
-}
-.rating-btn {
-	width: 40px;
-	padding: 5px 0;
-}
-.rating-display-outer {
-	position: absolute;
-	right: 0;
-}
-.user-review {
-	position: relative;
-	.rating-display-outer {
-		position: absolute;
-	}
-}
-.reviews-container {
-	max-height: 400px;
-	overflow: auto;
-}
-.rating-display {
-	width: 40px;
-	padding: 5px 0;
-	text-align: center;
-	color: $white;
-	font-weight: bold;
-	border-radius: 3px;
-	cursor: default;
-	display: inline-block;
-}
-.rating-trigger-btn {
-	width: 40px;
-	padding: 4px 0;
-	text-align: center;
-	border-radius: 3px;
-	cursor: pointer;
-	border: 1px solid $rating_btn_border;
-	display: inline-block;
-	color: $rating_btn_text_color;
-	background-color: $rating_btn_bg_color;
-	&:hover {
-		background-color: $rating_btn_bg_hover;
-	}
-}
-.rating-count {
-	position: absolute;
-	right: 0;
-	top: 45px;
-}
-.rating-count.rated {
-	border-bottom: 1px dotted $rating_count_underline;
-	cursor: pointer;
-}
-.btn {
-	&:focus {
-		outline: none;
-	}
-}
-.product-title-text {
-	font-family: $font_family_1;
-	color: $white;
-	font-size: 1.25em;
-	margin-top: 4px;
-	.subtext {
-		font-size: 14px;
-		margin-top: -8px;
-		text-transform: uppercase;
-	}
-}
-.location-info {
-	float: right;
-	text-align: right;
-	.location-title {
-		margin-top: 10px;
-		font-size: 1.5em;
-		.location-icon {
-			font-size: 0.9em;
-			margin-right: 3px;
-		}
-		.location-title-text {
-			float: right;
-		}
-	}
-	.location-change-btn {
-		font-size: 0.8em;
-	}
-}
-.hide {
-	display: none;
+  background-color: $body-bg-color;
+  min-height: 75rem;
+  padding-top: 4.5rem;
 }
 
+.top-nav {
+  background-color: $nav-bg-color;
+}
+
+.app-title {
+  background-color: $app-title-bg-color;
+  border-radius: 4px;
+  color: $black;
+  cursor: default;
+  padding: 0 4px;
+  transition: .5s;
+
+  &:hover {
+    transform: rotate(3deg);
+    transition: .5s;
+  }
+}
+
+.location-search {
+  background-color: $nav-bg-color;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted $location-input-underline;
+  color: $white;
+}
+
+.restaurant {
+  position: relative;
+
+  .image {
+    background: transparent no-repeat center;
+    background-size: cover;
+    height: 100px;
+    width: 120px;
+  }
+
+  .media-body {
+    height: 110px;
+  }
+
+  .rate-link {
+    position: absolute;
+    right: 2px;
+    top: 55px;
+  }
+}
+
+.address-block {
+  padding: 0;
+}
+
+.review-text {
+  padding: 0;
+}
+
+.rating-0 {
+  background-color: $rating-0-bg-color;
+  color: $rating-0-text-color;
+}
+
+.rating-1 {
+  background-color: $rating-1-bg-color;
+  color: $rating-1-text-color;
+}
+
+.rating-2 {
+  background-color: $rating-2-bg-color;
+  color: $rating-2-text-color;
+}
+
+.rating-3 {
+  background-color: $rating-3-bg-color;
+  color: $rating-3-text-color;
+}
+
+.rating-4 {
+  background-color: $raging-4-bg-color;
+  color: $rating-4-text-color;
+}
+
+.rating-5 {
+  background-color: $rating-5-bg-color;
+  color: $rating-5-text-color;
+}
+
+.rating-6 {
+  background-color: $rating-6-bg-color;
+  color: $rating-6-text-color;
+}
+
+.rating-7 {
+  background-color: $rating-7-bg-color;
+  color: $rating-7-text-color;
+}
+
+.rating-8 {
+  background-color: $rating-8-bg-color;
+  color: $rating-8-text-color;
+}
+
+.rating-9 {
+  background-color: $rating-9-bg-color;
+  color: $rating-9-text-color;
+}
+
+.rating-10 {
+  background-color: $rating-10-bg-color;
+  color: $rating-10-text-color;
+}
+
+.rating-unrated {
+  background-color: $rating-unrated-bg-color;
+  color: $rating-unrated-text-color;
+}
+
+.rating-btn {
+  padding: 5px 0;
+  width: 40px;
+}
+
+.rating-display-outer {
+  position: absolute;
+  right: 0;
+}
+
+.user-review {
+  position: relative;
+
+  .rating-display-outer {
+    position: absolute;
+  }
+}
+
+.reviews-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.rating-display {
+  border-radius: 3px;
+  color: $white;
+  cursor: default;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 0;
+  text-align: center;
+  width: 40px;
+}
+
+.rating-trigger-btn {
+  background-color: $rating-btn-bg-color;
+  border: 1px solid $rating-btn-border;
+  border-radius: 3px;
+  color: $rating-btn-text-color;
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 0;
+  text-align: center;
+  width: 40px;
+
+  &:hover {
+    background-color: $rating-btn-bg-hover;
+  }
+}
+
+.rating-count {
+  position: absolute;
+  right: 0;
+  top: 45px;
+
+  &.rated {
+    border-bottom: 1px dotted $rating-count-underline;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  &:focus {
+    outline: none;
+  }
+}
+
+.product-title-text {
+  color: $white;
+  font-family: $font-family-1;
+  font-size: 1.25em;
+  margin-top: 4px;
+
+  .subtext {
+    font-size: 14px;
+    margin-top: -8px;
+    text-transform: uppercase;
+  }
+}
+
+.location-info {
+  float: right;
+  text-align: right;
+
+  .location-title {
+    font-size: 1.5em;
+    margin-top: 10px;
+
+    .location-icon {
+      font-size: .9em;
+      margin-right: 3px;
+    }
+
+    .location-title-text {
+      float: right;
+    }
+  }
+
+  .location-change-btn {
+    font-size: .8em;
+  }
+}
+
+.hide {
+  display: none;
+}

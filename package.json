@@ -10,17 +10,21 @@
   "author": {
     "name": "jsx"
   },
+  "license": "MIT",
   "scripts": {
     "start": "yarn sass && electron .",
-    "lint": "./node_modules/.bin/eslint src/**/\\*.js",
-    "lint-fix": "./node_modules/.bin/eslint src/**/\\*.js --fix",
-    "dist": "yarn sass && electron-builder",
-    "sass": "node-sass src/public/css/ -o src/public/css/compiled"
+    "lint": "yarn eslint && yarn sass-lint",
+    "eslint": "./node_modules/.bin/eslint src/**/\\*.js",
+    "eslint-fix": "./node_modules/.bin/eslint src/**/\\*.js --fix",
+    "sass": "node-sass src/public/css/ -o src/public/css/compiled",
+    "sass-lint": "sass-lint src/public/css/*.scss --verbose",
+    "dist": "yarn sass && electron-builder"
   },
   "devDependencies": {
     "electron": "~1.8.2",
     "electron-builder": "^20.0.7",
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.7.2",
+    "sass-lint": "^1.12.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.3",
