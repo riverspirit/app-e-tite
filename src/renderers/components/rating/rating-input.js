@@ -1,12 +1,9 @@
 Vue.component('rating-input', {
   template: '#rating-input',
-  props: [],
+  props: ['rating'],
   data() {
     return {
       values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      classes: {
-        'rating-1': true,
-      },
       rating: 0,
     };
   },

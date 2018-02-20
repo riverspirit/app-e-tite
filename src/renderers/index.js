@@ -56,6 +56,11 @@ const app = new Vue({
       const {ratingValue, ratingText} = this;
 
       ipcRenderer.send('save-rating', {placeId, ratingValue, ratingText});
+
+      // Once the rating is saved, reset the variables
+      this.selectedPlace = null;
+      this.ratingValue = 0;
+      this.ratingText = null;
     },
   },
 
