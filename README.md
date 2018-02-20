@@ -47,9 +47,11 @@ My original thought was to make a separate Node.js/MongoDB server that acts as a
 ## Testing
 _See **Pending** below_
 
-## Pendng :(
+## Pendng
 ### Coding
  - **Unit testing** - I really wanted to do this, but the 'within a week' time limit with just one weekend was a little tight, so I decided to prioritize the functionality.
+ - **Validation** - Validations aren't used now.
+ - **Error handling** - No action is taken on errors / promise rejections.
  - **Decouple API key** - The Google API key is currently hard-coded at once place in the index.html file. This need to be taken out of there and inserted back programmatically during the build step.
 
 ### Functional
