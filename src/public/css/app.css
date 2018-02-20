@@ -50,6 +50,10 @@ body {
   top: 55px;
 }
 
+.address-block, .review-text {
+  padding: 0;
+}
+
 .rating-0 {
   background-color: #dadada;
   color: #eeeeee;
@@ -121,6 +125,19 @@ body {
   right: 0;
 }
 
+.user-review {
+  position: relative;
+}
+
+.user-review .rating-display-outer {
+  position: absolute;
+}
+
+.reviews-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
 .rating-display {
   width: 40px;
   padding: 5px 0;
@@ -152,6 +169,11 @@ body {
   position: absolute;
   right: 0;
   top: 45px;
+}
+
+.rating-count.rated {
+  border-bottom: 1px dotted #2c2cb5;
+  cursor: pointer;
 }
 /* .rating-btn {
   background-color: transparent;

@@ -2,7 +2,7 @@ const electron = require('electron');
 const {machineId} = require('node-machine-id');
 require('./config').init(electron.app.getPath('appData'));
 const {configStore} = require('./db');
-const {saveRating, getRating} = require('./ratings');
+const {saveRating, getRating, getReviews} = require('./ratings');
 
 machineId().then((id) => {
   configStore.set('deviceId', id);
@@ -75,4 +75,9 @@ ipcMain.on('save-rating', (event, data) => {
     const {newRating, ratingCount} = rating;
     event.sender.send('rating-updated', {placeId, newRating, ratingCount});
   });
+});
+
+ipcMain.on('get-reviews', (event, placeId) => {
+  const reviews = getReviews(placeId);
+  event.sender.send('reviews-fetched', reviews);
 });

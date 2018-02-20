@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <div id="app">
     <nav class="navbar fixed-top top-nav">
       <span class="navbar-brand app-title">
@@ -30,15 +29,13 @@
 
     <div class="container">
       <div id="map-container"></div>
-
       <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Restaurants near you</h6>
-
         <restaurant v-bind:details="restaurant" v-for="restaurant in restaurants"></restaurant>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+      <!-- Rating input modal -->
+      <div class="modal fade" id="ratingModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -56,7 +53,31 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="saveRating()">Publish your rating</button>
+              <button type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                v-on:click="saveRating()">Publish your rating
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review list modal -->
+      <div class="modal fade" id="reviewListModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="reviewListModalLabel">User reviews</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body reviews-container">
+              <user-review v-bind:review="review" v-for="review in reviewList"></user-review>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -65,7 +86,7 @@
     </div>
   </div>
 
-  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script>if (typeof module === 'object') {window.module = module;module = undefined;}</script>
   <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../node_modules/vue/dist/vue.min.js"></script>
@@ -79,17 +100,26 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="text-gray-dark">{{details.name}}</strong>
           <rating-display v-bind:rating="details.appetiteRating" v-bind:place-id="details.place_id"></rating-display>
-          <div class="rating-count" v-if="details.ratingCount">{{details.ratingCount}} ratings</div>
+          <div class="rating-count rated"
+            v-if="details.ratingCount"
+            v-on:click="fetchReviews(details.place_id)"
+            data-toggle="modal"
+            data-target="#reviewListModal">{{details.ratingCount}} ratings
+          </div>
           <div class="rating-count" v-else>Not rated yet</div>
         </div>
-        <span class="d-block">{{details.vicinity}}</span>
+        <span class="address-block col-md-10">{{details.vicinity}}</span>
       </div>
     </div>
   </script>
 
   <script type="text/x-template" id="rating-input">
     <div class="btn-group mb-4" role="group">
-      <button type="button" class="btn rating-btn" v-for="value in values" v-on:click="rate(value)" v-bind:class="getClasses(value)">{{value}}
+      <button type="button"
+        class="btn rating-btn"
+        v-for="value in values"
+        v-on:click="rate(value)"
+        v-bind:class="getClasses(value)">{{value}}
       </button>
     </div>
   </script>
@@ -97,9 +127,29 @@
   <script type="text/x-template" id="rating-display">
     <div class="rating-display-outer">
       <div class="rating-display" v-bind:class="classObject">{{rating ? rating : '-'}}</div>
-      <div class="rating-trigger-btn" v-on:click="placeSelected(placeId)" data-toggle="modal" data-target="#ratingModal">
+      <div class="rating-trigger-btn"
+        v-if="placeId"
+        v-on:click="placeSelected(placeId)"
+        data-toggle="modal"
+        data-target="#ratingModal">
         <i class="far fa-star"></i>
       </div class="rating-trigger-btn">
+    </div>
+  </script>
+
+  <script type="text/x-template" id="user-review">
+    <div class="media text-muted pt-3 user-review">
+      <img src="../public/images/user-image.png" class="mr-2 rounded">
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="text-gray-dark">User Name</strong>
+          <rating-display v-bind:rating="review.ratingValue" show-rating-button="false"></rating-display>
+        </div>
+        <div class="col-md-10 review-text" v-if="review.ratingText">{{review.ratingText}}</div>
+        <span v-else>
+          <i>Rated {{review.ratingValue}} without a comment</i>
+        </span>
+      </div>
     </div>
   </script>
 

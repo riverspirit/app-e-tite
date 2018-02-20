@@ -4,4 +4,9 @@ Vue.component('restaurant', {
   data() {
     return {};
   },
+  methods: {
+    fetchReviews(placeId) {
+      this.$root.$emit('fetch-reviews', placeId);
+    },
+  },
 });

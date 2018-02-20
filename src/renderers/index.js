@@ -20,6 +20,7 @@ const app = new Vue({
     selectedPlace: null,
     ratingValue: 0,
     ratingText: null,
+    reviewList: [],
   },
   methods: {
     getRestaurants() {
@@ -79,6 +80,10 @@ const app = new Vue({
       this.ratingValue = value;
     });
 
+    this.$on('fetch-reviews', (placeId) => {
+      ipcRenderer.send('get-reviews', placeId);
+    });
+
     ipcRenderer.on('places-list', (event, updatedData) => {
       updatedData.forEach((placeInfo) => {
         const index = findIndex(this.restaurants, {place_id: placeInfo.place_id});
@@ -93,6 +98,10 @@ const app = new Vue({
       const index = findIndex(this.restaurants, {place_id: placeId});
       this.$set(this.restaurants[index], 'appetiteRating', newRating);
       this.$set(this.restaurants[index], 'ratingCount', ratingCount);
+    });
+
+    ipcRenderer.on('reviews-fetched', (event, reviews) => {
+      this.reviewList = reviews;
     });
   },
 });

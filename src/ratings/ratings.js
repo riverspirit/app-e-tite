@@ -1,5 +1,14 @@
 const {db, collections, configStore} = require('../db');
 
+function sortByTimestamp(a, b) {
+  if (a.timestamp < b.timestamp) {
+    return 1;
+  } else if (a.timestamp > b.timestamp) {
+    return -1;
+  }
+  return 0;
+}
+
 function getRating(placeId) {
   return new Promise((resolve) => {
     setImmediate(() => {
@@ -24,8 +33,9 @@ function saveRating(placeId, ratingValue, ratingText) {
 
 function getReviews(placeId) {
   const collection = db.getCollection(collections.RATINGS);
-  const allRatings = collection.find({placeId});
-  return allRatings;
+  const allReviews = collection.find({placeId});
+  allReviews.sort(sortByTimestamp);
+  return allReviews;
 }
 
 module.exports = {saveRating, getRating, getReviews};
