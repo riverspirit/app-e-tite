@@ -35,9 +35,14 @@ $rating-btn-border: #7b7b7b;
 $location-input-underline: #464343;
 $rating-count-underline: #2c2cb5;
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   background-color: $body-bg-color;
-  min-height: 75rem;
+  margin-bottom: 60px;
   padding-top: 4.5rem;
 }
 
@@ -260,4 +265,13 @@ body {
 
 .hide {
   display: none;
+}
+
+.footer {
+  background-color: $body-bg-color;
+  bottom: 0;
+  height: 60px;
+  line-height: 60px;
+  position: fixed;
+  width: 100%;
 }
