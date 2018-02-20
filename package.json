@@ -2,6 +2,7 @@
   "name": "app-e-tite",
   "version": "1.0.0",
   "description": "Find restaurants nearby",
+  "repository": "https://bitbucket.org/jsx/app-e-tite",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",

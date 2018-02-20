@@ -29,7 +29,11 @@
 
     <div class="container">
       <div id="map-container"></div>
-      <div class="my-3 p-3 bg-white rounded box-shadow">
+      <div class="text-center" v-if="restaurants.length === 0">
+        <button class="btn btn-primary" v-on:click="getRestaurants()">Find restaurants near me</button>
+      </div>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow" v-if="restaurants.length">
         <h6 class="border-bottom border-gray pb-2 mb-0">Restaurants near you</h6>
         <restaurant v-bind:details="restaurant" v-for="restaurant in restaurants"></restaurant>
       </div>
@@ -108,7 +112,7 @@
           </div>
           <div class="rating-count" v-else>Not rated yet</div>
         </div>
-        <span class="address-block col-md-10">{{details.vicinity}}</span>
+        <div class="address-block col-md-10">{{details.vicinity}}</div>
       </div>
     </div>
   </script>
