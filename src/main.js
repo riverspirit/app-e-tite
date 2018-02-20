@@ -2,10 +2,12 @@ const path = require('path');
 const url = require('url');
 const electron = require('electron');
 const {machineId} = require('node-machine-id');
-require('./config').init(electron.app.getPath('appData'));
+const config = require('./config').init(electron.app.getPath('appData'));
 const {configStore} = require('./db');
 const {saveRating, getRating, getReviews} = require('./ratings');
 
+// Store a unique device id along with all user operations.
+// This will be used to identify users when syncing data with and remote data store.
 machineId().then((id) => {
   configStore.set('deviceId', id);
 });
@@ -18,7 +20,10 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1090, height: 625});
+  mainWindow = new BrowserWindow({width: config.windowWidth, height: config.windowHeight});
+
+  // Disable the default menubar (File, Edit etc)
+  mainWindow.setMenu(null);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -26,9 +31,6 @@ function createWindow() {
     protocol: 'file:',
     slashes: true,
   }));
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -60,6 +62,8 @@ app.on('activate', () => {
   }
 });
 
+// The renderer process is asking for the aggregate ratings for a given placeId.
+// Return the aggregate rating as well as the number of ratings/reviews.
 ipcMain.on('get-rating', (event, placeId) => {
   getRating(placeId).then((rating) => {
     const {newRating, ratingCount} = rating;
@@ -67,14 +71,18 @@ ipcMain.on('get-rating', (event, placeId) => {
   });
 });
 
+// Save the specified rating and review for a place.
+// Once the rating is saved, current effective rating is returned.
 ipcMain.on('save-rating', (event, data) => {
   const {placeId, ratingValue, ratingText} = data;
   saveRating(placeId, ratingValue, ratingText).then((rating) => {
+    // Send the updated rating back to the renderer process
     const {newRating, ratingCount} = rating;
     event.sender.send('rating-updated', {placeId, newRating, ratingCount});
   });
 });
 
+// The renderer process is asking for the list of reviews associated with a placeId
 ipcMain.on('get-reviews', (event, placeId) => {
   const reviews = getReviews(placeId);
   event.sender.send('reviews-fetched', reviews);

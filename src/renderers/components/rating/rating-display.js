@@ -1,3 +1,7 @@
+/**
+ * The <rating-display> component
+ */
+
 Vue.component('rating-display', {
   template: '#rating-display',
   props: {

@@ -1,34 +1,8 @@
-// var output = document.getElementById("out");
-
-// function success(position) {
-//   var latitude  = position.coords.latitude;
-//   var longitude = position.coords.longitude;
-
-//   output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
-//   var img = new Image();
-//   img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-//   output.appendChild(img);
-// }
-
-// function error() {
-//   output.innerHTML = "Unable to retrieve your location";
-// }
-
-// output.innerHTML = "<p>Locating…</p>";
-
-// if (results[0]) {
-//   map.setZoom(11);
-//   var marker = new google.maps.Marker({
-//     position: latLng,
-//     map: map
-//   });
-//   infowindow.setContent(results[0].formatted_address);
-// } else {
-//   window.alert('No results found');
-// }
-
+/**
+ * Get the name of the sublocality from the address lookup response
+ *
+ * @param {Array} results - Address lookup response
+ */
 function getLocality(results) {
   let locality = null;
 
@@ -48,6 +22,13 @@ function getLocality(results) {
   return locality;
 }
 
+/**
+ * Lookup the address of given set of latitude and longitude
+ *
+ * @param {number} latitude - Latitude
+ * @param {number} longitude - Longitude
+ * @returns {Promise}
+ */
 function geocode(latitude, longitude) {
   return new Promise((resolve, reject) => {
     const geocoder = new google.maps.Geocoder();
@@ -63,6 +44,11 @@ function geocode(latitude, longitude) {
   });
 }
 
+/**
+ * Get the location of the user from browse geolocation
+ *
+ * @returns {Promise}
+ */
 function geolocate() {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition((position) => {
