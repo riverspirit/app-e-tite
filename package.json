@@ -4,13 +4,21 @@
   "description": "Find restaurants nearby",
   "repository": "https://bitbucket.org/jsx/app-e-tite",
   "main": "src/main.js",
+  "build": {
+    "appId": "local.app-e-tite"
+  },
+  "author": {
+    "name": "jsx"
+  },
   "scripts": {
     "start": "electron .",
     "lint": "./node_modules/.bin/eslint src/**/\\*.js",
-    "lint-fix": "./node_modules/.bin/eslint src/**/\\*.js --fix"
+    "lint-fix": "./node_modules/.bin/eslint src/**/\\*.js --fix",
+    "dist": "electron-builder"
   },
   "devDependencies": {
-    "electron": "~1.8.2"
+    "electron": "~1.8.2",
+    "electron-builder": "^20.0.7"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.3",
@@ -24,6 +32,7 @@
     "lodash.findindex": "^4.6.0",
     "lokijs": "^1.5.3",
     "node-machine-id": "^1.1.10",
+    "popper.js": "^1.12.9",
     "vue": "^2.5.13"
   }
 }
