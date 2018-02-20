@@ -13,10 +13,16 @@ To run the application:
     yarn
     yarn start
 
-### Coding standards
+### Coding standards followed
  - ESLint is used to enforece the [airbnb/javascript](https://github.com/airbnb/javascript/) style guide.
  - SCSS files are linted using [sass-lint](https://github.com/sasstools/sass-lint)
  - [Erlang guidelines](https://github.com/erlang/otp/wiki/writing-good-commit-messages) for commit messages.
+
+To run both the JS and CSS linters, run:
+
+    yarn lint
+
+"`yarn eslint-fix`" can automatically fix minor JavaScript linting errors such as missing semicolons etc.
 
 ## Distribution
 To make a build, run `yarn dist`, which will create a build for the platform (Windows, Linux etc) in which the build job is being run. The built artifacts will be present in the `dist folder`
@@ -36,14 +42,14 @@ While using Electron.js made certain things easy (such as not having to use an E
 A library that provided data binding was essential and I decided to use Vue.js after reading a bit on it. This is the first time I'm using Vue, so I hope I didn't make a lot of vue-novice errors.
 
 ### Sycing
-My original plan was to make a separate Node.js/MongoDB server that acts as a data store that syncs with all the app instances. But as I realized that I wouldn't get time for that, I considered using Firebase's [Realtime Database](https://firebase.google.com/products/realtime-database/) which has JSON syncing. But this also remains pending.
+My original thought was to make a separate Node.js/MongoDB server that acts as a data store that syncs with all the app instances. But as I realized that I wouldn't get time for that, I considered using Firebase's [Realtime Database](https://firebase.google.com/products/realtime-database/) which has JSON syncing. But this also remains pending.
 
 ## Testing
 _See **Pending** below_
 
 ## Pendng :(
 ### Coding
- - **Unit testing** - I really wanted to do this, but the 'within a week' time limit was a little tight. So I prioritized the functionality and am left without tests.
+ - **Unit testing** - I really wanted to do this, but the 'within a week' time limit with just one weekend was a little tight, so I decided to prioritize the functionality.
  - **Decouple API key** - The Google API key is currently hard-coded at once place in the index.html file. This need to be taken out of there and inserted back programmatically during the build step.
 
 ### Functional
