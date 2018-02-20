@@ -59,6 +59,11 @@ const app = new Vue({
     },
   },
 
+  mounted() {
+    // Fetch and show the list of restaurants when the app is loaded
+    this.getRestaurants();
+  },
+
   created() {
     this.$on('place-selected', (placeId) => {
       const index = findIndex(this.restaurants, {place_id: placeId});
