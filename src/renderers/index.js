@@ -32,7 +32,7 @@ const app = new Vue({
           search(location.latitude, location.longitude).then((placesList) => {
             const placeIdList = new Set();
 
-            const formattedPlaceList = placesList.map((place) => {
+            this.restaurants = placesList.map((place) => {
               const placeClone = Object.assign({}, place);
               placeIdList.add(placeClone.place_id);
               placeClone.appetiteRating = placeClone.appetiteRating || 0;
@@ -43,8 +43,6 @@ const app = new Vue({
             [...placeIdList].forEach((placeId) => {
               ipcRenderer.send('get-rating', placeId);
             });
-
-            this.restaurants.push(...formattedPlaceList);
           }).catch(_ => _);
         }).catch(_ => _);
       }).catch(_ => _);
